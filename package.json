@@ -1,0 +1,51 @@
+{
+  "name": "json-protocol",
+  "version": "1.0.0",
+  "description": "Simple linebase JSON protocol in Typescript",
+  "main": "jest.config.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "7.7.5",
+    "@babel/core": "7.7.5",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/plugin-proposal-numeric-separator": "7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "7.7.5",
+    "@babel/preset-env": "7.7.6",
+    "@babel/preset-typescript": "7.7.4",
+    "@connectedcars/setup": "^0.3.0",
+    "@types/jest": "24.0.23",
+    "@types/node": "^12.12.17",
+    "@typescript-eslint/eslint-plugin": "2.11.0",
+    "@typescript-eslint/parser": "2.11.0",
+    "babel-jest": "24.9.0",
+    "eslint": "6.7.2",
+    "eslint-config-prettier": "6.7.0",
+    "eslint-plugin-prettier": "3.1.1",
+    "jest": "24.9.0",
+    "prettier": "1.19.1",
+    "typescript": "3.7.3"
+  },
+  "scripts": {
+    "test": "TZ=UTC jest --detectOpenHandles",
+    "cov": "TZ=UTC jest --coverage=true",
+    "build": "npm run build:types && npm run build:js:src",
+    "build:js": "npm run build:js:src",
+    "build:js:src": "babel src --out-dir ./build/dist/src --extensions '.ts' --source-maps --ignore '**/*.d.ts','src/**/*.test.ts'",
+    "build:types": "tsc --emitDeclarationOnly",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlbdk/node-json-protocol.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlbdk/node-json-protocol/issues"
+  },
+  "homepage": "https://github.com/tlbdk/node-json-protocol#readme",
+  "engines": {
+    "node": ">=10.15.0"
+  }
+}
