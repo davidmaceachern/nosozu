@@ -1,15 +1,15 @@
 import crypto from 'crypto'
 import os from 'os'
-import { JSONClient } from './json-client'
-import { TimeoutError, ConnectionClosedError, ConnectionError } from './errors'
-import { JSONServer } from './json-server'
+import { JSONClient } from '../src/json-client'
+import { TimeoutError, ConnectionClosedError, ConnectionError } from '../src/errors'
+import { JSONServer } from '../src/json-server'
 
 describe('JSONClient', () => {
   let jsonServer: JSONServer
   let socketPath: string
 
   beforeAll(async () => {
-    socketPath = `${os.tmpdir()}-${crypto.randomBytes(12).toString('hex')}.sock`
+    socketPath = `./tmp-${crypto.randomBytes(12).toString('hex')}.sock`
     jsonServer = new JSONServer(socketPath, (socket, request) => {
       switch (request.type) {
         case 'TestRequest': {
