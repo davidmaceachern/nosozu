@@ -1,4 +1,4 @@
-import { JSONClient } from './json-client'
+import { JSONClient } from './jsonClient'
 import { JSONMessage } from './protocol'
 
 export interface Position extends JSONMessage {

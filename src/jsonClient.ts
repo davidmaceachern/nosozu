@@ -62,7 +62,7 @@ export class JSONClient {
     for (const id of this.delayedRequests) {
       const request = this.outstandingRequests[id]
       if (request) {
-        this.socket.write(request.message + '\n')
+        this.socket.write(request.message + '\n') //TODO: Change to fit new message type
       }
     }
     this.delayedRequests = []
@@ -108,7 +108,7 @@ export class JSONClient {
     // TODO: Do more efficient buffering and check a max size
     this.buffer = Buffer.concat([this.buffer, chunk])
     // Do message chunking and basic decoding
-    const offset = this.buffer.indexOf('\n')
+    const offset = this.buffer.indexOf('\n') //TODO: Change to fit new message type
     if (offset > -1) {
       const message = this.buffer.slice(0, offset)
       this.buffer = this.buffer.slice(offset + 1)
@@ -137,7 +137,9 @@ export class JSONClient {
   }
 
   async request(obj: JSONMessageRequest, timeout = 1000): Promise<JSONMessage> {
-    // TODO: Validate that it's a JSONMessageRequest
+    if (!!obj.type) { 
+      // console.log('not valid request') // TODO: Validate that it's a JSONMessageRequest
+    }
     const request = { id: `${this.id++}`, ...obj } as JSONMessage
     const message = encode(request)
 
@@ -155,7 +157,13 @@ export class JSONClient {
     if (this.options.writeDelayOnReconnect && this.reconnecting) {
       this.delayedRequests.push(request.id)
     } else {
-      this.socket.write(message + '\n')
+      console.log('before sending the message')
+      const stringifiedCommandBuffer = Buffer.from(message)
+      const zeroByteBuffer = new Uint8Array([0])
+      const totalLength = stringifiedCommandBuffer.length + zeroByteBuffer.length
+      const encodedMessage = Buffer.concat([stringifiedCommandBuffer, zeroByteBuffer], totalLength)
+      this.socket.write(encodedMessage) 
+      //this.socket.write(message + '\n') //TODO: Change to fit new message type
     }
 
     return requestPromise
@@ -169,6 +177,7 @@ export class JSONClient {
     if (this.reconnecting) {
       this.onCloseResolve()
     }
+    // console.log('THIS IS BEING CALLED') // component test is calling this.
     this.socket.end()
     return this.onClosePromise
   }

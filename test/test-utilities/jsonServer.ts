@@ -1,7 +1,7 @@
 import net from 'net'
 import fs from 'fs'
-import { decode, JSONMessage } from './protocol'
-import { isFileNotFoundError } from './errors'
+import { decode, JSONMessage } from '../../src/protocol'
+import { isFileNotFoundError } from '../../src/errors'
 
 export class JSONServer {
   private server: net.Server
@@ -21,14 +21,22 @@ export class JSONServer {
     this.server = net.createServer(client => {
       let buffer = Buffer.alloc(0)
       client.on('data', chunk => {
+        console.log('inside the server')
         buffer = Buffer.concat([buffer, chunk])
-        const offset = buffer.indexOf('\n')
-        if (offset > -1) {
-          const message = buffer.slice(0, offset)
-          buffer = buffer.slice(offset + 1)
-          const response = decode(message.toString()) as JSONMessage
-          callback(client, response)
-        }
+        console.log('Buffer is ')
+        console.log(buffer)
+        //const offset = buffer.indexOf('\n') // TODO: Change to fit new message type 
+        const removeZeroByte = buffer.slice(0, buffer.length-1)
+        const response = removeZeroByte.toString()
+        console.log(response)
+        // const statusResponse = JSON.parse(response)
+        // console.log(statusResponse)
+       // if (offset > -1) {
+       //   const message = buffer.slice(0, offset)
+       //   buffer = buffer.slice(offset + 1)
+       //   const response = decode(message.toString()) as JSONMessage
+       //   callback(client, response)
+       // }
       })
     })
 

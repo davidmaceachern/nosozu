@@ -1,8 +1,8 @@
 import crypto from 'crypto'
 import os from 'os'
-import { JSONClient } from '../src/json-client'
+import { JSONClient } from '../src/jsonClient'
 import { TimeoutError, ConnectionClosedError, ConnectionError } from '../src/errors'
-import { JSONServer } from '../src/json-server'
+import { JSONServer } from './test-utilities/jsonServer'
 
 describe('JSONClient', () => {
   let jsonServer: JSONServer

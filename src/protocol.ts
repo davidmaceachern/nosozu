@@ -13,6 +13,9 @@ export interface JSONMessageRequest extends Omit<JSONMessage, 'id'> {}
 
 export function encode(obj: JSONMessage): string {
   // TODO: Basic validation that this is a JSONMessage
+  console.log('inside encode')
+  console.log(obj)
+  console.log(JSON.stringify(obj))
   return JSON.stringify(obj)
 }
 
