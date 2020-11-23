@@ -105,10 +105,12 @@ export class JSONClient {
   }
 
   private handleData(chunk: Buffer): void {
+    console.log('Component test calls here')
     // TODO: Do more efficient buffering and check a max size
     this.buffer = Buffer.concat([this.buffer, chunk])
     // Do message chunking and basic decoding
-    const offset = this.buffer.indexOf('\n') //TODO: Change to fit new message type
+    const offset = this.buffer.indexOf('\u{0}') //TODO: Change to fit new message type
+    console.log(`offset is: ${offset}`)
     if (offset > -1) {
       const message = this.buffer.slice(0, offset)
       this.buffer = this.buffer.slice(offset + 1)
@@ -177,7 +179,7 @@ export class JSONClient {
     if (this.reconnecting) {
       this.onCloseResolve()
     }
-    // console.log('THIS IS BEING CALLED') // component test is calling this.
+    console.log('THIS IS BEING CALLED') // component test is calling this.
     this.socket.end()
     return this.onClosePromise
   }

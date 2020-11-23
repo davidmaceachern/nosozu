@@ -7,13 +7,14 @@ export interface Command {
 
 // What we send to sozu
 export interface CommandRequest {
-    id: string 
+//    id: string 
     version: number
     type: string
     data: {
-        type: string
+        type?: string
+        path?: string
     }
-    worker_id: number
+//    worker_id: number
 }
 
 // type status: "OK" | "PROCESSING" | "ERROR"

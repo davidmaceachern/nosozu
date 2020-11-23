@@ -26,6 +26,10 @@ export class JSONServer {
         console.log('Buffer is ')
         console.log(buffer)
         //const offset = buffer.indexOf('\n') // TODO: Change to fit new message type 
+        const offset = buffer.indexOf('\u{0}')
+        console.log('offset')
+        console.log(offset)
+        // TODO: Sozu says 'Missing field version' so we should ensure our request contains required fields
         const removeZeroByte = buffer.slice(0, buffer.length-1)
         const response = removeZeroByte.toString()
         console.log(response)

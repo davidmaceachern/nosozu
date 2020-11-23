@@ -20,8 +20,17 @@ export function encode(obj: JSONMessage): string {
 }
 
 export function decode(str: string): JSONMessage {
-  // TODO: Basic validation that this is a JSONMessage
-  return JSON.parse(str)
+  console.log('inside decode')
+  console.log(str)
+  const messageContents = JSON.parse(str)
+  if (!messageContents.hasOwnProperty('id') && !messageContents.hasOwnProperty('status')){
+    console.log(messageContents)
+    console.log('Response message from Sozu is not as we expected') // TODO: Basic validation that this is a JSONMessage
+    throw Error('Ooops, Sozu does not like that')
+  } else {
+    console.log('looks like the response we were expecting')
+    return messageContents
+  } 
 }
 
 export function isJSONParseErrorMessage(obj: JSONMessage): obj is JSONParseErrorMessage {
