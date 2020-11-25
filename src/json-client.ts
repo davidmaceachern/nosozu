@@ -6,7 +6,9 @@ interface JSONClientOptions {
   reconnectDelay: number
   writeDelayOnReconnect: boolean
 }
-
+/*
+Class that handles messaging with a running Sozu server over unix sockets.
+*/
 export class JSONClient {
   private options: JSONClientOptions = {
     reconnectDelay: 500,
@@ -62,7 +64,7 @@ export class JSONClient {
     for (const id of this.delayedRequests) {
       const request = this.outstandingRequests[id]
       if (request) {
-        this.socket.write(request.message + '\n') //TODO: Change to fit new message type
+        this.socket.write(request.message + '\u{0}') 
       }
     }
     this.delayedRequests = []
@@ -105,12 +107,10 @@ export class JSONClient {
   }
 
   private handleData(chunk: Buffer): void {
-    console.log('Component test calls here')
     // TODO: Do more efficient buffering and check a max size
     this.buffer = Buffer.concat([this.buffer, chunk])
     // Do message chunking and basic decoding
-    const offset = this.buffer.indexOf('\u{0}') //TODO: Change to fit new message type
-    console.log(`offset is: ${offset}`)
+    const offset = this.buffer.indexOf('\u{0}')
     if (offset > -1) {
       const message = this.buffer.slice(0, offset)
       this.buffer = this.buffer.slice(offset + 1)
@@ -118,7 +118,11 @@ export class JSONClient {
         // TODO: Validate this is a JSONMessage
         const response = decode(message.toString()) as JSONMessage
         const request = this.outstandingRequests[response.id]
-        // TODO: Validate that request is not undefined
+        if(typeof request == 'undefined') {
+          console.log('Request is undefined') // TODO: Validate that request is not undefined
+        }
+        // TODO: Work with different response.status, ERROR PROCESSING OK
+        // TODO: Add logging
         delete this.outstandingRequests[response.id]
         clearTimeout(request.timeoutRef)
         if (!request) {
@@ -159,13 +163,11 @@ export class JSONClient {
     if (this.options.writeDelayOnReconnect && this.reconnecting) {
       this.delayedRequests.push(request.id)
     } else {
-      console.log('before sending the message')
       const stringifiedCommandBuffer = Buffer.from(message)
       const zeroByteBuffer = new Uint8Array([0])
       const totalLength = stringifiedCommandBuffer.length + zeroByteBuffer.length
       const encodedMessage = Buffer.concat([stringifiedCommandBuffer, zeroByteBuffer], totalLength)
       this.socket.write(encodedMessage) 
-      //this.socket.write(message + '\n') //TODO: Change to fit new message type
     }
 
     return requestPromise
@@ -179,7 +181,6 @@ export class JSONClient {
     if (this.reconnecting) {
       this.onCloseResolve()
     }
-    console.log('THIS IS BEING CALLED') // component test is calling this.
     this.socket.end()
     return this.onClosePromise
   }

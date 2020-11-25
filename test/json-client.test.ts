@@ -1,8 +1,7 @@
 import crypto from 'crypto'
-import os from 'os'
-import { JSONClient } from '../src/jsonClient'
+import { JSONClient } from '../src/json-client'
 import { TimeoutError, ConnectionClosedError, ConnectionError } from '../src/errors'
-import { JSONServer } from './test-utilities/jsonServer'
+import { JSONServer } from './test-utilities/json-server'
 
 describe('JSONClient', () => {
   let jsonServer: JSONServer
@@ -13,11 +12,11 @@ describe('JSONClient', () => {
     jsonServer = new JSONServer(socketPath, (socket, request) => {
       switch (request.type) {
         case 'TestRequest': {
-          socket.write(JSON.stringify({ id: request.id, type: 'TestRequest', value: 'test' }) + '\n')
+          socket.write(JSON.stringify({ id: request.id, type: 'TestRequest', value: 'test' }) + '\u{0}')
           break
         }
         case 'TestBadRequestId': {
-          socket.write(JSON.stringify({ id: 'not-valid', type: 'TestRequest', value: 'test' }) + '\n')
+          socket.write(JSON.stringify({ id: 'not-valid', type: 'TestRequest', value: 'test' }) + '\u{0}')
           break
         }
         case 'TestTimeout': {

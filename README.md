@@ -3,7 +3,7 @@
 </div>
 
 <h1 align="center">
-   Nosozu !!!!! PRE-ALPHA 
+   Nosozu 
 </h1>
 
 <p align="center">
@@ -17,7 +17,7 @@
 </div>
 <br />
 
-!! This library is still under development, and as such there are no guarantees that it will work under load if at all,
+This library is still under development, and as such there are no guarantees that it will work under load, if at all,
 
 Contributions are welcome, see [here](https://github.com/davidmaceachern/nosozu#contributing)
 
@@ -38,22 +38,14 @@ Take a look at the Elixir version [here](https://github.com/evuez/exsozu).
 A minimal example that demonstrates how to send a proxy status command to the Sozu server.
 
 ```javascript
-import { Client } from nodesozu
+import { Nosozu } from nosozu
 
 const socketPath = "/tmp/sozu.sock"
 
-const command = {
-      "id": "ID_TEST",
-      "type": "PROXY",
-      "version": 0,
-      "data": {
-        "type": "STATUS",
-      },
-      "worker_id": 0
-    }
+const command = {type: "STATUS"}
     
-let client = new Client(socketPath)
-client.request(command)
+let client = new Nosozu(socketPath)
+client.run(command)
 ```
 
 Find more examples [here](https://github.com/davidmaceachern/nodesozu/blob/main/examples)
@@ -78,9 +70,9 @@ There are some living documents [here](https://github.com/davidmaceachern/nodeso
 
 Licensed under MIT license (LICENSE-MIT or http://opensource.org/licenses/MIT)
 
-### Standing on the Shoulders of Giants 
+### Standing on the shoulders of giants 
 
-The client code that handles commands is based on work done by [Connected Cars](https://connectedcars.dk/), Sozu uses a zerobyte seperated message to converse, whereas the [original client](https://github.com/tlbdk/node-json-protocol) uses a line based protocol.
+The client code that handles commands is based on work done by [Connected Cars](https://connectedcars.dk/), Sozu uses a zero byte separated message to converse, whereas the [original client](https://github.com/tlbdk/node-json-protocol) uses a line-based protocol.
 
 ### Contribution
 

@@ -1,7 +1,5 @@
 {
-  "id": "ID_TEST",
   "version": 0,
-  "proxy_id": 0,
   "type": "PROXY",
   "data": {
     "type": "STATUS"

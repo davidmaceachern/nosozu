@@ -1,9 +1,8 @@
 {
-  "id": "ID_TEST",
   "version": 0,
   "type": "PROXY",
   "data": {
-    "type": "REMOVE_HTTP_FRONT",
+    "type": "ADD_HTTP_FRONT",
     "data": {
       "app_id": "xxx",
       "hostname": "yyy",

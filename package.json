@@ -1,7 +1,7 @@
 {
-  "name": "json-protocol",
-  "version": "1.0.0",
-  "description": "Simple linebase JSON protocol in Typescript",
+  "name": "nosozu",
+  "version": "1.1.0",
+  "description": "Client library for interacting with the Sōzu HTTP reverse proxy server.",
   "main": "jest.config.js",
   "dependencies": {},
   "devDependencies": {
@@ -12,9 +12,9 @@
     "@babel/plugin-proposal-optional-chaining": "7.7.5",
     "@babel/preset-env": "7.7.6",
     "@babel/preset-typescript": "7.7.4",
-    "@connectedcars/setup": "^0.3.0",
+    "@connectedcars/setup": "0.3.0",
     "@types/jest": "24.0.23",
-    "@types/node": "^12.12.17",
+    "@types/node": "12.12.17",
     "@typescript-eslint/eslint-plugin": "2.11.0",
     "@typescript-eslint/parser": "2.11.0",
     "babel-jest": "24.9.0",
@@ -48,6 +48,6 @@
   },
   "homepage": "https://github.com/tlbdk/node-json-protocol#readme",
   "engines": {
-    "node": ">=10.15.0"
+    "node": ">=12.18.4"
   }
 }

@@ -1,23 +1,25 @@
-import { CommandRequest, CommandResponse } from '../src/command'
-import { JSONClient } from '../src/jsonClient'
+import { CommandRequest, CommandResponse } from '../src/command-builder'
+import { JSONClient } from '../src/json-client'
 
 const SOCKET_PATH: string = '/home/davidmaceachern/github/nodesozu/tmp/sock';
+// const flushPromises = () => new Promise((resolve) => process.nextTick(resolve));
 
 describe('Nodesozu client can process:', () => {
   let socketPath: string = SOCKET_PATH
-  afterAll(async () => {
+//  afterAll(async () => {
     // TODO: Clear open handles so that jest can exist gracefully
-    let client: JSONClient | null = null
-    client = new JSONClient(socketPath)
-    let shutdown: CommandRequest = {
-      "version": 0,
-      "type": "PROXY",
-      "data": {
-        "type": "SOFT_STOP",
-      }
-    } 
-    await client.request(shutdown)
-  });
+//    await flushPromises()
+//    let client: JSONClient | null = null
+//    client = new JSONClient(socketPath)
+//    let shutdown: CommandRequest = {
+//      "version": 0,
+//      "type": "PROXY",
+//      "data": {
+//        "type": "SOFT_STOP",
+//      }
+//    } 
+//    await client.request(shutdown)
+//  });
   it('a single command such as to check the proxy status', async () => {
     let status: CommandRequest = {
       type: "PROXY",

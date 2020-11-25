@@ -21,26 +21,16 @@ export class JSONServer {
     this.server = net.createServer(client => {
       let buffer = Buffer.alloc(0)
       client.on('data', chunk => {
-        console.log('inside the server')
         buffer = Buffer.concat([buffer, chunk])
-        console.log('Buffer is ')
-        console.log(buffer)
-        //const offset = buffer.indexOf('\n') // TODO: Change to fit new message type 
         const offset = buffer.indexOf('\u{0}')
-        console.log('offset')
-        console.log(offset)
         // TODO: Sozu says 'Missing field version' so we should ensure our request contains required fields
         const removeZeroByte = buffer.slice(0, buffer.length-1)
-        const response = removeZeroByte.toString()
-        console.log(response)
-        // const statusResponse = JSON.parse(response)
-        // console.log(statusResponse)
-       // if (offset > -1) {
-       //   const message = buffer.slice(0, offset)
-       //   buffer = buffer.slice(offset + 1)
-       //   const response = decode(message.toString()) as JSONMessage
-       //   callback(client, response)
-       // }
+        if (offset > -1) {
+          const message = removeZeroByte.slice(0, offset)
+          buffer = buffer.slice(offset + 1)
+          const response = decode(message.toString()) as JSONMessage
+          callback(client, response)
+        }
       })
     })
 
