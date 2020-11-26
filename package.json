@@ -27,7 +27,7 @@
   },
   "scripts": {
     "cov": "TZ=UTC jest --coverage=true",
-    "test": "TZ=UTC jest --detectOpenHandles",
+    "test": "TZ=UTC jest --detectOpenHandles ./test",
     "test:watch": "TZ=UTC jest --detectOpenHandles --watch",
     "test:component": "TZ=UTC jest --detectOpenHandles ./component-test/client.test.ts",
     "build": "npm run build:types && npm run build:js:src",
