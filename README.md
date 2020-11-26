@@ -23,7 +23,7 @@ Contributions are welcome, see [here](https://github.com/davidmaceachern/nosozu#
 
 ## Goal
 
-To provide a resilient API for developers to interact with the Sozu command server using Typescript. 
+To provide a resilient API for developers to interact with the Sozu command server using Typescript.
 
 Take a look at the Elixir version [here](https://github.com/evuez/exsozu).
 
@@ -57,7 +57,7 @@ Find more examples [here](https://github.com/davidmaceachern/nosozu/blob/main/ex
 
 ### GitHub Actions
 
-Two actions are added by default:
+Three actions are added by default:
 
 - `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
 - `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
@@ -73,7 +73,7 @@ There are some living documents [here](https://github.com/davidmaceachern/nosozu
 
 Licensed under MIT license (LICENSE-MIT or http://opensource.org/licenses/MIT)
 
-### Standing on the shoulders of giants 
+### Standing on the shoulders of giants
 
 The client code that handles commands is based on work done by [Connected Cars](https://connectedcars.dk/), Sozu uses a zero byte separated message to communicate, whereas the [original client](https://github.com/tlbdk/node-json-protocol) uses a line-based protocol.
 
