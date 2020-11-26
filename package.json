@@ -1,6 +1,6 @@
 {
   "name": "nosozu",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Client library for interacting with the Sōzu HTTP reverse proxy server.",
   "main": "jest.config.js",
   "dependencies": {},

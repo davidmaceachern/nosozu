@@ -1,5 +1,6 @@
-import { CommandBuilder, Command } from './command-builder'
+import { CommandBuilder, Commands } from './command-builder'
 import { JSONClient } from './json-client'
+import { RunCommandError } from './errors'
 /* 
 Class that will be exposed to the libraries end user
 - Creates a CommandRequest which Sozu needs to execute the command 
@@ -8,24 +9,32 @@ Class that will be exposed to the libraries end user
 */
 export class Nosozu {
     private JSONClient: JSONClient | null = null
-    private commands = []
     private client: JSONClient
-    
     private commandBuilder: CommandBuilder
-    private result: Object
+    private runCommandResult: object = {}
 
-    constructor(socketPath: string) {
-        this.client = new JSONClient(socketPath) // TODO: check that JSONclient is singleton
+    constructor(socketPath: string) { // TODO: do we enable the user to pass in more configuration?
+        this.client = new JSONClient(socketPath) // TODO: check that JSONclient is singleton, should it be?
         this.commandBuilder = new CommandBuilder()
-        this.result = {}
+    } // TODO: need to clean up the variables in this class after the run method has been invoked?
+    
+    async run(...commands: Commands): Promise<any> {
+        const successfulCommands: any = []
+        const errors: any = []
+        const commandRequests = commands.map((command) => this.commandBuilder.buildCommandRequest(command)) // TODO: validate command inputs
+        await Promise.all([commandRequests.map(async (commandRequest) => await this.client.request(commandRequest))])
+            .then(
+                results => successfulCommands.push(results),
+            ).catch(
+                error => { 
+                    errors.push(error),
+                    new RunCommandError(`Command failed with: ${error.message}`)
+            })
+        this.runCommandResult = { successfulCommands: successfulCommands, errors: errors }
+        return this.runCommandResult 
     }
-    // TODO: handle one or multiple commands ...commands: Array<Command>
-    async run(command: Command): Promise<any> {
-        const commandRequest = this.commandBuilder.buildCommandRequest(command)
-        // const CommandRequests = commands.map((command) => this.commandBuilder.buildCommand(command)) // TODO: build the command
-        // Promise.all(CommandRequests)
-        // console.log() // TODO: make the request
-        this.result = { "summary": { "successful": 1, "errors": 3, "processing": 2} }
-        return this.result
+
+    async close() {
+        this.client.close()
     }
 }

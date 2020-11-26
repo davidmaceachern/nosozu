@@ -1,8 +1,10 @@
 # How this project was set up 
 
-This project was bootstrapped using the [TSDX tool](https://tsdx.io/)which means client is written in Typescript.
+Originally this project was bootstrapped using the [TSDX tool](https://tsdx.io/)which means client is written in Typescript.
 
 > If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
+
+Since then a fork was made of another project and used as a template before merging the original code together to form what this repository contains now.
 
 ## Commands
 

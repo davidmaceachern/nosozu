@@ -8,13 +8,33 @@ describe('Nosozu', () => {
         socketPath = `./tmp-${crypto.randomBytes(12).toString('hex')}.sock`
     })
     
-    test('can send the status command', async () => {
-        let nosozu = new Nosozu(socketPath)
-        let command = { type: "status" }
-        let expected = { "summary": { "successful": 1, "errors": 3, "processing": 2} }
-        
-        const response = await nosozu.run(command)
+   test('can send the status command', async () => {
+       let nosozu = new Nosozu(socketPath)
+       let command = { type: "status" }
+       let expected = { successfulCommands: [], errors: [] } 
+       
+        try {
+            nosozu = new Nosozu(socketPath)
+            const response = await nosozu.run(command)
+            expect(response).toEqual(expected)
+        } finally {
+            await nosozu?.close() 
+        }
+       const response = await nosozu.run(command)
 
-        expect(response).toEqual(expected)
-    })
+       expect(response).toEqual(expected)
+   })
+    
+    test('can handle multiple commands', async () => {
+        let nosozu: Nosozu | null = null
+        let commands = [ { type: "status" }, { type: "list_workers" } ]
+        let expected = { successfulCommands: [], errors: [] } 
+        try {
+            nosozu = new Nosozu(socketPath)
+            const response = await nosozu.run(commands)
+            expect(response).toEqual(expected)
+        } finally {
+            await nosozu?.close() 
+        }
+    }) 
 })

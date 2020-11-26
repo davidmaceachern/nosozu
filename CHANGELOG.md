@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0alpha - 2020-11-26
+
+- Basic command validation 
+- Executes multiple commands
+
 ## 1.0.1 - 2020-11-25
 
 - Forked node-json-protocol, created template repository, created new repository for nosozu

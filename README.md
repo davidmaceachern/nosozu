@@ -19,7 +19,7 @@
 
 This library is still under development, and as such there are no guarantees that it will work under load, if at all,
 
-Contributions are welcome, see [here](https://github.com/davidmaceachern/nosozu#contributing)
+Contributions are welcome, see [here](https://github.com/davidmaceachern/nosozu#contributing) for an explanation, or jump straight to [getting started](https://github.com/davidmaceachern/nosozu/blob/main/doc/how-to-get-started-developing.md) if you want to explore the codebase.
 
 ## Goal
 

@@ -3,7 +3,7 @@ export interface Command {
     type: string
     data?: object 
 }
-
+export interface Commands extends Array<Command> { }
 // What we send to sozu
 export interface CommandRequest {
     version: number
