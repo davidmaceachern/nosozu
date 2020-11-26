@@ -12,7 +12,7 @@
 
 <div align="center">
   <a alt="GitHub Workflow Status" href="https://github.com/davidmaceachern/nosozu/actions">
-    <img  src="https://img.shields.io/github/workflow/status/davidmaceachern/nodesozu/CI">
+    <img  src="https://img.shields.io/github/workflow/status/davidmaceachern/nosozu/CI">
   </a>
 </div>
 <br />
@@ -40,15 +40,18 @@ A minimal example that demonstrates how to send a proxy status command to the So
 ```javascript
 import { Nosozu } from nosozu
 
-const socketPath = "/tmp/sozu.sock"
+async function main() {
+    const socketPath = "/tmp/sozu.sock"
+    let client = new Nosozu(socketPath)
+    const command = { type: "status" }
+    const result = await client.run(command)
+    return result
+}
 
-const command = {type: "STATUS"}
-    
-let client = new Nosozu(socketPath)
-client.run(command)
+main()
 ```
 
-Find more examples [here](https://github.com/davidmaceachern/nodesozu/blob/main/examples)
+Find more examples [here](https://github.com/davidmaceachern/nosozu/blob/main/examples)
 
 ## 🏗️ Continuous Integration
 
@@ -62,9 +65,9 @@ Two actions are added by default:
 
 ## Contributing
 
-Guidelines on how to contribute can be found [here](https://github.com/davidmaceachern/nodesozu/blob/main/.github/CONTRIBUTING.md)
+Guidelines on how to contribute can be found [here](https://github.com/davidmaceachern/nosozu/blob/main/.github/CONTRIBUTING.md)
 
-There are some living documents [here](https://github.com/davidmaceachern/nodesozu/blob/main/doc) which covers some topics on development.
+There are some living documents [here](https://github.com/davidmaceachern/nosozu/blob/main/doc) which covers some topics on development.
 
 ## License
 
@@ -72,7 +75,7 @@ Licensed under MIT license (LICENSE-MIT or http://opensource.org/licenses/MIT)
 
 ### Standing on the shoulders of giants 
 
-The client code that handles commands is based on work done by [Connected Cars](https://connectedcars.dk/), Sozu uses a zero byte separated message to converse, whereas the [original client](https://github.com/tlbdk/node-json-protocol) uses a line-based protocol.
+The client code that handles commands is based on work done by [Connected Cars](https://connectedcars.dk/), Sozu uses a zero byte separated message to communicate, whereas the [original client](https://github.com/tlbdk/node-json-protocol) uses a line-based protocol.
 
 ### Contribution
 
