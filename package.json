@@ -26,7 +26,7 @@
     "typescript": "3.7.3"
   },
   "scripts": {
-    "cov": "TZ=UTC jest --coverage=true",
+    "cov": "TZ=UTC jest --coverage=true ./test",
     "test": "TZ=UTC jest --detectOpenHandles ./test",
     "test:watch": "TZ=UTC jest --detectOpenHandles --watch",
     "test:component": "TZ=UTC jest --detectOpenHandles ./component-test/client.test.ts",
@@ -36,6 +36,10 @@
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["html", "lcov"]
   },
   "repository": {
     "type": "git",

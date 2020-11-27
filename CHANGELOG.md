@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.1-0 - 2020-11-26
+## 2.0.1-alpha - 2020-11-26
 
 - Basic command validation 
 - Executes multiple commands

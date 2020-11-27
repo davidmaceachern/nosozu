@@ -14,6 +14,9 @@
   <a alt="GitHub Workflow Status" href="https://github.com/davidmaceachern/nosozu/actions">
     <img  src="https://img.shields.io/github/workflow/status/davidmaceachern/nosozu/CI">
   </a>
+  <a alt="NPM Package Version" href="https://www.npmjs.com/package/nosozu">
+    <img alt="npm" src="https://img.shields.io/npm/v/nosozu">
+  </a>
 </div>
 <br />
 
@@ -21,7 +24,7 @@ This library is still under development, and as such there are no guarantees tha
 
 Contributions are welcome, see [here](https://github.com/davidmaceachern/nosozu#contributing) for an explanation, or jump straight to [getting started](https://github.com/davidmaceachern/nosozu/blob/main/doc/how-to-get-started-developing.md) if you want to explore the codebase.
 
-## Goal
+##  Goal
 
 To provide a resilient API for developers to interact with the Sozu command server using Typescript.
 
