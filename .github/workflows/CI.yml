@@ -1,4 +1,4 @@
-name: Run Test Suites
+name: CI 
 
 on: [push]
 

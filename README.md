@@ -17,6 +17,9 @@
   <a alt="NPM Package Version" href="https://www.npmjs.com/package/nosozu">
     <img alt="npm" src="https://img.shields.io/npm/v/nosozu">
   </a>
+  <a alt="Code Coverage" href="https://codecov.io/gh/davidmaceachern/nosozu#">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/davidmaceachern/nosozu">
+  </a>
 </div>
 <br />
 
@@ -60,11 +63,9 @@ Find more examples [here](https://github.com/davidmaceachern/nosozu/blob/main/ex
 
 ### GitHub Actions
 
-Three actions are added by default:
+One action currently running:
 
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-- `publish` which publishes new package versions to npm when a Github Release is created
+- `CI` which runs code coverage reports upon pushing to main branch. 
 
 ## Contributing
 
