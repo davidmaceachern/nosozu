@@ -1,4 +1,5 @@
 {
+  "declaration": true,
   "extends": "./node_modules/@connectedcars/setup/tsconfig",
   "compilerOptions": {
     "outDir": "build/dist"

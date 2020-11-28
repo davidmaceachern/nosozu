@@ -63,9 +63,8 @@ Find more examples [here](https://github.com/davidmaceachern/nosozu/blob/main/ex
 
 ### GitHub Actions
 
-One action currently running:
-
-- `CI` which runs code coverage reports upon pushing to main branch. 
+One action currently running, `CI`: 
+- Runs code coverage reports upon pushing to the main branch, uploads to Codecov.
 
 ## Contributing
 

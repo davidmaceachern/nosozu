@@ -2,7 +2,20 @@
   "name": "nosozu",
   "version": "2.0.1-alpha",
   "description": "Client library for interacting with the Sōzu HTTP reverse proxy server.",
-  "main": "jest.config.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+    "scripts": {
+    "cov": "TZ=UTC jest --coverage=true ./test",
+    "test": "TZ=UTC jest --detectOpenHandles ./test",
+    "test:watch": "TZ=UTC jest --detectOpenHandles --watch",
+    "test:component": "TZ=UTC jest --detectOpenHandles ./component-test/client.test.ts",
+    "build": "npm run build:types && npm run build:js:src",
+    "build:js": "npm run build:js:src",
+    "build:js:src": "babel src --out-dir ./build/dist/src --extensions '.ts' --source-maps --ignore '**/*.d.ts','src/**/*.test.ts'",
+    "build:types": "tsc --emitDeclarationOnly",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
+  },
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "7.7.5",
@@ -25,18 +38,7 @@
     "prettier": "1.19.1",
     "typescript": "3.7.3"
   },
-  "scripts": {
-    "cov": "TZ=UTC jest --coverage=true ./test",
-    "test": "TZ=UTC jest --detectOpenHandles ./test",
-    "test:watch": "TZ=UTC jest --detectOpenHandles --watch",
-    "test:component": "TZ=UTC jest --detectOpenHandles ./component-test/client.test.ts",
-    "build": "npm run build:types && npm run build:js:src",
-    "build:js": "npm run build:js:src",
-    "build:js:src": "babel src --out-dir ./build/dist/src --extensions '.ts' --source-maps --ignore '**/*.d.ts','src/**/*.test.ts'",
-    "build:types": "tsc --emitDeclarationOnly",
-    "lint": "eslint './src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
-  },
+
   "jest": {
     "collectCoverage": true,
     "coverageReporters": ["html", "lcov"]
@@ -45,7 +47,7 @@
     "type": "git",
     "url": "git+https://github.com/davidmaceachern/nosozu.git"
   },
-  "author": "",
+  "author": "David MacEachern",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/davidmaceachern/nosozu/issues"

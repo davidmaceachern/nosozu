@@ -22,7 +22,8 @@ export class Nosozu {
         const successfulCommands: any = []
         const errors: any = []
         const commandRequests = commands.map((command) => this.commandBuilder.buildCommandRequest(command)) // TODO: validate command inputs
-        await Promise.all([commandRequests.map(async (commandRequest) => await this.client.request(commandRequest))])
+        // TODO: Consider batching commands, and adding backoff here if Sozu has a request limit.
+        await Promise.all([commandRequests.map(async (commandRequest) => await this.client.request(commandRequest))]) // TODO: typescript 3.9 might fix null promise.all issue
             .then(
                 results => successfulCommands.push(results),
             ).catch(
