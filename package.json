@@ -1,9 +1,12 @@
 {
   "name": "nosozu",
-  "version": "2.0.2-alpha",
+  "version": "2.0.1-alpha",
   "description": "Client library for interacting with the Sōzu HTTP reverse proxy server.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "cov": "TZ=UTC jest --coverage=true ./test",
     "test": "TZ=UTC jest --detectOpenHandles ./test",
