@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
     "cov": "TZ=UTC jest --coverage=true ./test",
     "test": "TZ=UTC jest --detectOpenHandles ./test",
     "test:watch": "TZ=UTC jest --detectOpenHandles --watch",

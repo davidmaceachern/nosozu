@@ -3,7 +3,7 @@
 ## 2.0.2-alpha - 2020-12-8
 
 - Published type definitions
-- Tidy up the code build
+- Tidied up the code build/publish step
 
 ## 2.0.1-alpha - 2020-11-26
 
