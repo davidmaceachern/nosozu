@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2-alpha - 2020-12-8
+
+- Published type definitions
+- Tidy up the code build
+
 ## 2.0.1-alpha - 2020-11-26
 
 - Basic command validation 
@@ -18,4 +23,3 @@
 - Bootstrapped minimal client that can send and receive a status message to a running Sozu server over a Unix socket.
 - Add some docs
 - Add Github Actions for JS related items.
-

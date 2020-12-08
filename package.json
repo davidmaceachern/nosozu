@@ -4,15 +4,16 @@
   "description": "Client library for interacting with the Sōzu HTTP reverse proxy server.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-    "scripts": {
+  "scripts": {
+    "prepublish": "npm run build",
     "cov": "TZ=UTC jest --coverage=true ./test",
     "test": "TZ=UTC jest --detectOpenHandles ./test",
     "test:watch": "TZ=UTC jest --detectOpenHandles --watch",
     "test:component": "TZ=UTC jest --detectOpenHandles ./component-test/client.test.ts",
     "build": "npm run build:types && npm run build:js:src",
     "build:js": "npm run build:js:src",
-    "build:js:src": "babel src --out-dir ./build/dist/src --extensions '.ts' --source-maps --ignore '**/*.d.ts','src/**/*.test.ts'",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:js:src": "babel src --out-dir ./dist/ --extensions '.ts' --ignore '**/*.d.ts','**/*.test.ts'",
+    "build:types": "tsc --emitDeclarationOnly ",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
   },
@@ -38,10 +39,12 @@
     "prettier": "1.19.1",
     "typescript": "3.7.3"
   },
-
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["html", "lcov"]
+    "coverageReporters": [
+      "html",
+      "lcov"
+    ]
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,14 @@
 {
+  "exclude": [
+    "test",
+    "component-test",
+    "dist",
+    "examples"
+  ],
   "declaration": true,
   "extends": "./node_modules/@connectedcars/setup/tsconfig",
   "compilerOptions": {
-    "outDir": "build/dist"
+    "outDir": "dist"
   },
   "resolveJsonModule": true
 }
