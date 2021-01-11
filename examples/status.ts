@@ -8,4 +8,4 @@ async function main() {
     return result
 }
 
-main()
+await main()
