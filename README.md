@@ -54,7 +54,7 @@ async function main() {
     return result
 }
 
-main()
+await main()
 ```
 
 Find more examples [here](https://github.com/davidmaceachern/nosozu/blob/main/examples)
